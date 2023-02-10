@@ -1,12 +1,12 @@
-#go-kairosdb
+# go-kairosdb
 
 
 A go client for [KairosDB](http://kairosdb.github.io/).
 
-##介绍
+## 介绍
 *go-kairosdb* 是kairosdb 时序数据库的golang 语言版本的client sdk包，从github.com/ajityagaty/go-kairosdb复制过来，并新增扩展了groupby 分组查询功能，filter过滤聚合器以及gzip 数据传输。
-
-##获取 go-kairosdb
+**修改tags添加方式**
+## 获取 go-kairosdb
 
 go get github.com/tiezhong2004/go-kairosdb
 
