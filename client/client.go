@@ -15,8 +15,8 @@
 package client
 
 import (
-	"github.com/tiezhong2004/go-kairosdb/builder"
-	"github.com/tiezhong2004/go-kairosdb/response"
+	"github.com/retoool/go-kairosdb/builder"
+	"github.com/retoool/go-kairosdb/response"
 )
 
 type Client interface {
@@ -31,7 +31,7 @@ type Client interface {
 
 	// Queries KairosDB using the query built using builder.
 	Query(qb builder.QueryBuilder) (*response.QueryResponse, error)
-	
+
 	QueryTags(qb builder.QueryBuilder) (*response.QueryResponse, error)
 
 	// Sends metrics from the builder to the KairosDB server.

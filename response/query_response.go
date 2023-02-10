@@ -14,7 +14,7 @@
 
 package response
 
-import "github.com/tiezhong2004/go-kairosdb/builder"
+import "github.com/retoool/go-kairosdb/builder"
 
 type GroupResult struct {
 	Name string `json:"name,omitempty"`

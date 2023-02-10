@@ -16,12 +16,13 @@ package client
 
 import (
 	"bytes"
+	"compress/gzip"
 	"encoding/json"
 	"io/ioutil"
 	"net/http"
-    "compress/gzip"
-	"github.com/tiezhong2004/go-kairosdb/builder"
-	"github.com/tiezhong2004/go-kairosdb/response"
+
+	"github.com/retoool/go-kairosdb/builder"
+	"github.com/retoool/go-kairosdb/response"
 )
 
 var (
@@ -29,7 +30,7 @@ var (
 	datapoints_ep    = api_version + "/datapoints"
 	deldatapoints_ep = api_version + "/datapoints/delete"
 	query_ep         = api_version + "/datapoints/query"
-	querytags_ep         = api_version + "/datapoints/query/tags"
+	querytags_ep     = api_version + "/datapoints/query/tags"
 	health_ep        = api_version + "/health/check"
 	delmetric_ep     = api_version + "/metric/"
 	metricnames_ep   = api_version + "/metricnames"
