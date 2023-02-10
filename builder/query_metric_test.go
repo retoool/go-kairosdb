@@ -24,7 +24,7 @@ import (
 // Success test.
 func TestQMetric(t *testing.T) {
 	testData := `{"tags":{"tag1":"val1"},"name":"qm1","limit":100,"order":"desc"}`
-	qm := NewQueryMetric("qm1").AddTag("tag1", "val1").SetLimit(100).SetOrder(DESCENDING)
+	qm := NewQueryMetric("qm1").AddTag("tag1", []string{"val1"}).SetLimit(100).SetOrder(DESCENDING)
 	err := qm.Validate()
 
 	assert.Nil(t, err, "No error expected")
@@ -41,23 +41,23 @@ func TestQMetricNameEmpty(t *testing.T) {
 
 // Failure test.
 func TestQMetricTagNameEmpty(t *testing.T) {
-	err := NewQueryMetric("qm1").AddTag("", "val").Validate()
+	err := NewQueryMetric("qm1").AddTag("", []string{"val1"}).Validate()
 
 	assert.Equal(t, ErrorQMetricTagNameInvalid, err, "Query Metric tag name cannot be empty")
 }
 
 // Failure test.
 func TestQMetricTagValueEmpty(t *testing.T) {
-	err := NewQueryMetric("qm1").AddTag("tag", "").Validate()
+	err := NewQueryMetric("qm1").AddTag("tag", nil).Validate()
 
 	assert.Equal(t, ErrorQMetricTagValueInvalid, err, "Query Metric tag value cannot be empty")
 }
 
 // Failure test.
 func TestQMetricMapTagNameEmpty(t *testing.T) {
-	tm := map[string]string{
-		"tag1": "val1",
-		"":     "val2",
+	tm := map[string][]string{
+		"tag1": []string{"val1"},
+		"":     []string{"val2"},
 	}
 	err := NewQueryMetric("qm1").AddTags(tm).Validate()
 
@@ -66,9 +66,9 @@ func TestQMetricMapTagNameEmpty(t *testing.T) {
 
 // Failure test.
 func TestQMetricMapTagValueEmpty(t *testing.T) {
-	tm := map[string]string{
-		"tag1": "val1",
-		"tag2": "",
+	tm := map[string][]string{
+		"tag1": []string{"val1"},
+		"tag2": nil,
 	}
 	err := NewQueryMetric("qm1").AddTags(tm).Validate()
 
@@ -77,7 +77,7 @@ func TestQMetricMapTagValueEmpty(t *testing.T) {
 
 // Failure test.
 func TestQMetricLimitNegative(t *testing.T) {
-	err := NewQueryMetric("qm1").AddTag("tag", "val").SetLimit(-1).Validate()
+	err := NewQueryMetric("qm1").AddTag("tag", []string{"val1"}).SetLimit(-1).Validate()
 
 	assert.Equal(t, ErrorQMetricLimitInvalid, err, "Query Metric limit cannot be negative")
 }

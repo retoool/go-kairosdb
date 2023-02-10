@@ -124,7 +124,7 @@ func (qm *qMetric) Validate() error {
 	for k, v := range qm.Tags {
 		if k == "" {
 			return ErrorQMetricTagNameInvalid
-		} else if v == "" {
+		} else if v == nil {
 			return ErrorQMetricTagValueInvalid
 		}
 	}
