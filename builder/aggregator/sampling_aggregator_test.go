@@ -17,7 +17,7 @@ package aggregator
 import (
 	"testing"
 
-	"github.com/tiezhong2004/go-kairosdb/builder/utils"
+	"github.com/retoool/go-kairosdb/builder/utils"
 	"github.com/stretchr/testify/assert"
 )
 

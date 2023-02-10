@@ -15,8 +15,8 @@
 package builder
 
 import (
-	"github.com/tiezhong2004/go-kairosdb/builder/aggregator"
-	"github.com/tiezhong2004/go-kairosdb/builder/utils"
+	"github.com/retoool/go-kairosdb/builder/aggregator"
+	"github.com/retoool/go-kairosdb/builder/utils"
 )
 
 type TrimType string
@@ -27,15 +27,15 @@ const (
 	TRIM_BOTH  TrimType = "both"
 )
 
-//增加过滤聚合器 20191102 by wutz
+// 增加过滤聚合器 20191102 by wutz
 type FilterOp string
 
 const (
 	FilterOp_EQ  FilterOp = "equal"
 	FilterOp_LT  FilterOp = "lt"
-	FilterOp_LTE  FilterOp = "lte"
+	FilterOp_LTE FilterOp = "lte"
 	FilterOp_GT  FilterOp = "gt"
-	FilterOp_GTE  FilterOp = "gte"
+	FilterOp_GTE FilterOp = "gte"
 )
 
 // Creates an aggregator that returns the minimum values for each time period as specified.
@@ -217,15 +217,15 @@ func CreateTrimAggregator(trim TrimType) Aggregator {
 	return aggregator.NewCustomAggregator(m)
 }
 
-//增加过滤聚合器 20191102 by wutz
+// 增加过滤聚合器 20191102 by wutz
 // Creates an aggregator that filters datapoints according to the filter operation.
 // @param operation what to filter on
 // @param threshold the value the operation is performed on. If the operation is lt, then a null data point is returned if the data point is less than the threshold.
 // @return filter aggregator
-func CreateFilterAggregator(operation FilterOp , threshold float64) Aggregator {
+func CreateFilterAggregator(operation FilterOp, threshold float64) Aggregator {
 	m := make(map[string]interface{})
 	m["name"] = "filter"
 	m["filter_op"] = operation
 	m["threshold"] = threshold
-    return  aggregator.NewCustomAggregator(m)
+	return aggregator.NewCustomAggregator(m)
 }
